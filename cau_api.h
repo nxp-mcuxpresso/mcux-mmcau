@@ -281,6 +281,8 @@ void cau_sha1_hash(const unsigned char *msg_data, unsigned int *sha1_state);
  *
  * @param[out] sha256_state Pointer to 256-bit block of SHA2 state variables a,b,c,d,e,f,g,h
  * @note All pointers must have word (4 bytes) alignment
+ * @return 0 No error. CAU hardware support for SHA256 is present.
+ * @return -1 Error. CAU hardware support for SHA256 is not present.
  */
 int cau_sha256_initialize_output(const unsigned int *output);
 
