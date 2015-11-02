@@ -415,13 +415,13 @@ status_t MMCAU_MD5_InitializeOutput(uint8_t *md5State)
 /* cau_md5_hash_n */
 status_t MMCAU_MD5_HashN(const uint8_t *msgData, uint32_t numBlocks, uint8_t *md5State)
 {
-    return mmcau_hash_MD5API(cau_md5_hash_n, msgData, numBlocks, md5State, MMCAU_MD5_STATE_SIZE);
+    return mmcau_hash_MD5API((cau_hash_md5_api_t)cau_md5_hash_n, msgData, numBlocks, md5State, MMCAU_MD5_STATE_SIZE);
 }
 
 /* cau_md5_update */
 status_t MMCAU_MD5_Update(const uint8_t *msgData, uint32_t numBlocks, uint8_t *md5State)
 {
-    return mmcau_hash_MD5API(cau_md5_update, msgData, numBlocks, md5State, MMCAU_MD5_STATE_SIZE);
+    return mmcau_hash_MD5API((cau_hash_md5_api_t)cau_md5_update, msgData, numBlocks, md5State, MMCAU_MD5_STATE_SIZE);
 }
 
 /* cau_sha1_initialize_output */
@@ -459,13 +459,13 @@ status_t MMCAU_SHA1_InitializeOutput(uint8_t *sha1State)
 /* cau_sha1_hash_n */
 status_t MMCAU_SHA1_HashN(const uint8_t *msgData, uint32_t numBlocks, uint8_t *sha1State)
 {
-    return mmcau_hash_API(cau_sha1_hash_n, msgData, numBlocks, sha1State, MMCAU_SHA1_STATE_SIZE);
+    return mmcau_hash_API((cau_hash_api_t)cau_sha1_hash_n, msgData, numBlocks, sha1State, MMCAU_SHA1_STATE_SIZE);
 }
 
 /* cau_sha1_update */
 status_t MMCAU_SHA1_Update(const uint8_t *msgData, uint32_t numBlocks, uint8_t *sha1State)
 {
-    return mmcau_hash_API(cau_sha1_update, msgData, numBlocks, sha1State, MMCAU_SHA1_STATE_SIZE);
+    return mmcau_hash_API((cau_hash_api_t)cau_sha1_update, msgData, numBlocks, sha1State, MMCAU_SHA1_STATE_SIZE);
 }
 
 /* cau_sha256_initialize_output(). not this function has different return value (int) that the other two (void) */
@@ -511,11 +511,11 @@ status_t MMCAU_SHA256_InitializeOutput(uint8_t *sha256State)
 /* cau_sha256_hash_n */
 status_t MMCAU_SHA256_HashN(const uint8_t *input, uint32_t numBlocks, uint8_t *sha256State)
 {
-    return mmcau_hash_API(cau_sha256_hash_n, input, numBlocks, sha256State, MMCAU_SHA256_STATE_SIZE);
+    return mmcau_hash_API((cau_hash_api_t)cau_sha256_hash_n, input, numBlocks, sha256State, MMCAU_SHA256_STATE_SIZE);
 }
 
 /* cau_sha256_update */
 status_t MMCAU_SHA256_Update(const uint8_t *input, uint32_t numBlocks, uint8_t *sha256State)
 {
-    return mmcau_hash_API(cau_sha256_update, input, numBlocks, sha256State, MMCAU_SHA256_STATE_SIZE);
+    return mmcau_hash_API((cau_hash_api_t)cau_sha256_update, input, numBlocks, sha256State, MMCAU_SHA256_STATE_SIZE);
 }
