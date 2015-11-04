@@ -1,7 +1,8 @@
 <!-- This file is maintained by driver author -->
 <metadata>  <components>    <component name="middleware.mmcau.support" requires="devices.modules.D_IP_MMCAU_APB3_SYN_001"/>
     
-    <component name="middleware.mmcau" requires="middleware.mmcau.support" provides="middleware">      <source path="./">        <files mask="cau_api.h"/>
+    <component name="middleware.mmcau" requires="middleware.mmcau.support" provides="middleware.mmcau">      <source path="./">        <files mask="cau_api.h"/>
         <files mask="fsl_mmcau.c"/>
         <files mask="fsl_mmcau.h"/>
-        <files mask="cau_api.h"/>        <files mask="README.txt"/>      </source>      <source path="./asm-cm0p">        <files mask="*.a"/>      </source>      <source path="./asm-cm4-cm7">        <files mask="*.a"/>        <files mask="*.lib"/>      </source>      <source path="./asm-cm0p/src">        <files mask="*.hdr"/>        <files mask="*.s"/>      </source>      <source path="./asm-cm4-cm7/src">        <files mask="*.hdr"/>        <files mask="*.s"/>      </source>    </component>  </components></metadata>
+        <files mask="cau_api.h"/>        <files mask="README.txt"/>      </source>      <source path="./asm-cm0p">        <files mask="*.a"/>        <files mask="*.lib"/>      </source>      <source path="./asm-cm4-cm7">        <files mask="*.a"/>
+        <files mask="*.lib"/>      </source>      <source path="./asm-cm0p/src">        <files mask="*.hdr"/>        <files mask="*.s"/>      </source>      <source path="./asm-cm4-cm7/src">        <files mask="*.hdr"/>        <files mask="*.s"/>      </source>    </component>  </components></metadata>
