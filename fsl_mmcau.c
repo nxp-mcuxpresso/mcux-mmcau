@@ -31,8 +31,8 @@
 #include "fsl_mmcau.h"
 #include "cau_api.h"
 
-#define MMCAU_AES_BLOCK_SIZE 16u
-#define MMCAU_DES_BLOCK_SIZE 8u
+#define MMCAU_AES_BLOCK_SIZE (16)
+#define MMCAU_DES_BLOCK_SIZE (8)
 
 #define MMCAU_MD5_STATE_SIZE (16)
 #define MMCAU_SHA1_STATE_SIZE (20)
@@ -40,8 +40,8 @@
 
 /* these are maximum for CAU API has functions. HAST_STATE shall be set to maximum of MD5_STATE,SHA1_STATE and
  * SHA256_STATE */
-#define MMCAU_HASH_STATE_SIZE 32
-#define MMCAU_HASH_BLOCK_SIZE 64
+#define MMCAU_HASH_STATE_SIZE (32)
+#define MMCAU_HASH_BLOCK_SIZE (64)
 
 /* typedef for pointer to CAU API functions */
 typedef void (*cau_hash_api_t)(const uint8_t *msgData, const int numBlocks, uint32_t *hashState);
@@ -109,9 +109,9 @@ static status_t mmcau_AesCrypt(const uint8_t *in, const uint8_t *keySch, uint32_
     }
     else
     {
-        uint32_t inAlign[MMCAU_AES_BLOCK_SIZE / sizeof(uint32_t)];  /* 16 bytes aligned input block */
-        uint32_t outAlign[MMCAU_AES_BLOCK_SIZE / sizeof(uint32_t)]; /* 16 bytes aligned output block */
-        uint32_t keySchAlign[60];                                   /* max 60 longwords in case of 32 bytes AES key */
+        uint8_t inAlign[MMCAU_AES_BLOCK_SIZE];  /* 16 bytes aligned input block */
+        uint8_t outAlign[MMCAU_AES_BLOCK_SIZE]; /* 16 bytes aligned output block */
+        uint32_t keySchAlign[60];               /* max 60 longwords in case of 32 bytes AES key */
         size_t keySchSize;
         const uint8_t *keySchWork;
         const uint8_t *inWork;
@@ -167,9 +167,9 @@ static status_t mmcau_DesCrypt(const uint8_t *in, const uint8_t *key, uint8_t *o
 
     if (in && key && out)
     {
-        uint32_t keyAlign[MMCAU_DES_BLOCK_SIZE / sizeof(uint32_t)]; /* 8 bytes key size aligned */
-        uint32_t inAlign[MMCAU_DES_BLOCK_SIZE / sizeof(uint32_t)];  /* 8 bytes input block aligned */
-        uint32_t outAlign[MMCAU_DES_BLOCK_SIZE / sizeof(uint32_t)]; /* 8 bytes output block aligned */
+        uint8_t keyAlign[MMCAU_DES_BLOCK_SIZE]; /* 8 bytes key size aligned */
+        uint8_t inAlign[MMCAU_DES_BLOCK_SIZE];  /* 8 bytes input block aligned */
+        uint8_t outAlign[MMCAU_DES_BLOCK_SIZE]; /* 8 bytes output block aligned */
         const uint8_t *inWork;
         const uint8_t *keyWork;
         uint8_t *outWork;
@@ -213,8 +213,8 @@ static status_t mmcau_hash_API(
     {
         const uint8_t *msgDataWork;
         void *hashStateWork;
-        uint32_t msgDataAlign[MMCAU_HASH_BLOCK_SIZE / sizeof(uint32_t)];
-        uint32_t hashStateAlign[MMCAU_HASH_STATE_SIZE / sizeof(uint32_t)];
+        uint8_t msgDataAlign[MMCAU_HASH_BLOCK_SIZE];
+        uint8_t hashStateAlign[MMCAU_HASH_STATE_SIZE];
         bool copyInOut;
 
         /* get aligned pointers */
@@ -249,8 +249,8 @@ static status_t mmcau_hash_MD5API(
     {
         const uint8_t *msgDataWork;
         void *hashStateWork;
-        uint32_t msgDataAlign[MMCAU_HASH_BLOCK_SIZE / sizeof(uint32_t)];
-        uint32_t hashStateAlign[MMCAU_HASH_STATE_SIZE / sizeof(uint32_t)];
+        uint8_t msgDataAlign[MMCAU_HASH_BLOCK_SIZE];
+        uint8_t hashStateAlign[MMCAU_HASH_STATE_SIZE];
         bool copyInOut;
 
         /* get aligned pointers */
@@ -287,10 +287,10 @@ status_t MMCAU_AES_SetKey(const uint8_t *key, const size_t keySize, uint8_t *key
     }
     else
     {
-        uint32_t keyAlign[32 / sizeof(uint32_t)] = {0}; /* max 32 bytes key supported by CAU lib */
-        uint32_t keySchAlign[60] = {0};                 /* max 60 longwords in case of 32 bytes AES key */
-        const uint8_t *keyWork;                         /* aligned CAU lib input address argument */
-        uint8_t *keySchWork;                            /* aligned CAU lib output address argument */
+        uint8_t keyAlign[32] = {0};     /* max 32 bytes key supported by CAU lib */
+        uint32_t keySchAlign[60] = {0}; /* max 60 longwords in case of 32 bytes AES key */
+        const uint8_t *keyWork;         /* aligned CAU lib input address argument */
+        uint8_t *keySchWork;            /* aligned CAU lib output address argument */
         bool copyOut;
         size_t sizeOut;
 
@@ -346,7 +346,7 @@ status_t MMCAU_DES_ChkParity(const uint8_t *key)
 
     if (key)
     {
-        uint32_t keyAlign[8 / sizeof(uint32_t)]; /* 8 bytes key size aligned */
+        uint8_t keyAlign[8]; /* 8 bytes key size aligned */
         const uint8_t *keyWork;
 
         /* align key[] */
@@ -370,12 +370,12 @@ status_t MMCAU_DES_ChkParity(const uint8_t *key)
     return status;
 }
 
-status_t MMCAU_DES_Encrypt(const uint8_t *in, const uint8_t *key, uint8_t *out)
+status_t MMCAU_DES_EncryptEcb(const uint8_t *in, const uint8_t *key, uint8_t *out)
 {
     return mmcau_DesCrypt(in, key, out, true /* 1 for encryption */);
 }
 
-status_t MMCAU_DES_Decrypt(const uint8_t *in, const uint8_t *key, uint8_t *out)
+status_t MMCAU_DES_DecryptEcb(const uint8_t *in, const uint8_t *key, uint8_t *out)
 {
     return mmcau_DesCrypt(in, key, out, false /* 0 for decryption */);
 }
@@ -387,7 +387,7 @@ status_t MMCAU_MD5_InitializeOutput(uint8_t *md5State)
 
     if (md5State)
     {
-        uint32_t hashStateAlign[MMCAU_HASH_STATE_SIZE / sizeof(uint32_t)];
+        uint8_t hashStateAlign[MMCAU_HASH_STATE_SIZE];
         void *hashStateWork;
         bool copyInOut;
         /* align pointer */
@@ -431,7 +431,7 @@ status_t MMCAU_SHA1_InitializeOutput(uint8_t *sha1State)
 
     if (sha1State)
     {
-        uint32_t hashStateAlign[MMCAU_HASH_STATE_SIZE / sizeof(uint32_t)];
+        uint8_t hashStateAlign[MMCAU_HASH_STATE_SIZE];
         void *hashStateWork;
         bool copyInOut;
         /* align pointer */
@@ -476,7 +476,7 @@ status_t MMCAU_SHA256_InitializeOutput(uint8_t *sha256State)
 
     if (sha256State)
     {
-        uint32_t hashStateAlign[MMCAU_HASH_STATE_SIZE / sizeof(uint32_t)];
+        uint8_t hashStateAlign[MMCAU_HASH_STATE_SIZE];
         void *hashStateWork;
         bool copyInOut;
         /* align pointer */
