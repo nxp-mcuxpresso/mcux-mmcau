@@ -33,6 +33,19 @@
 
 #include "fsl_common.h"
 
+/*******************************************************************************
+ * API
+ ******************************************************************************/
+
+/*!
+ * @addtogroup mmcau MMCAU Peripheral Driver Wrapper
+ * @{
+ */
+
+#if defined(__cplusplus)
+extern "C" {
+#endif
+
 /*!
  * @brief AES: Performs an AES key expansion
  *
@@ -40,7 +53,7 @@
  *
  * @param key Pointer to input key (128, 192, 256 bits in length).
  * @param keySize Key size in bytes (16, 24, 32)
- * @param[out] keySch Pointer to key schedule output (44, 52, 60 longwords) 
+ * @param[out] keySch Pointer to key schedule output (44, 52, 60 longwords)
  * @note Table below shows the requirements for the MMCAU_AES_SetKey() function when using AES128, AES192 or AES256.@n
  * | [in] Key Size (bits)    |  [out] Key Schedule Size (32 bit data values)  |@n
  * | :---------------------: | :--------------------------------------------: |@n
@@ -139,7 +152,7 @@ status_t MMCAU_DES_DecryptEcb(const uint8_t *in, const uint8_t *key, uint8_t *ou
  *
  * @param[out] md5State Pointer to 128-bit block of md5 state variables: a,b,c,d
  */
-status_t MMCAU_MD5_InitializeOutput(uint8_t *md5State);
+status_t MMCAU_MD5_InitializeOutput(uint32_t *md5State);
 
 /*!
  * @brief MD5: Updates MD5 state variables with n message blocks
@@ -153,7 +166,7 @@ status_t MMCAU_MD5_InitializeOutput(uint8_t *md5State);
  *        The MMCAU_MD5_InitializeOutput() function must be called when starting a new hash.
  *        Useful when handling non-contiguous input message blocks.
  */
-status_t MMCAU_MD5_HashN(const uint8_t *msgData, uint32_t numBlocks, uint8_t *md5State);
+status_t MMCAU_MD5_HashN(const uint8_t *msgData, uint32_t numBlocks, uint32_t *md5State);
 
 /*!
  * @brief MD5: Updates MD5 state variables
@@ -169,7 +182,7 @@ status_t MMCAU_MD5_HashN(const uint8_t *msgData, uint32_t numBlocks, uint8_t *md
  *        as it is called internally to start a new hash.
  *        All input message blocks must be contiguous.
  */
-status_t MMCAU_MD5_Update(const uint8_t *msgData, uint32_t numBlocks, uint8_t *md5State);
+status_t MMCAU_MD5_Update(const uint8_t *msgData, uint32_t numBlocks, uint32_t *md5State);
 
 /*!
  * @brief SHA1: Initializes the SHA1 state variables
@@ -179,7 +192,7 @@ status_t MMCAU_MD5_Update(const uint8_t *msgData, uint32_t numBlocks, uint8_t *m
  *
  * @param[out] sha1State Pointer to 160-bit block of SHA1 state variables: a,b,c,d,e
  */
-status_t MMCAU_SHA1_InitializeOutput(uint8_t *sha1State);
+status_t MMCAU_SHA1_InitializeOutput(uint32_t *sha1State);
 
 /*!
  * @brief SHA1: Updates SHA1 state variables with n message blocks
@@ -188,12 +201,12 @@ status_t MMCAU_SHA1_InitializeOutput(uint8_t *sha1State);
  *
  * @param msgData Pointer to start of input message data
  * @param numBlocks Number of 512-bit blocks to process
- * @param[in,out] sha1State Pointer to 160-bit block of SHA1 state variables: a,b,c,d,e 
+ * @param[in,out] sha1State Pointer to 160-bit block of SHA1 state variables: a,b,c,d,e
  * @note  Input message and digest output blocks must not overlap.
  *        The MMCAU_SHA1_InitializeOutput() function must be called when starting a new hash.
  *        Useful when handling non-contiguous input message blocks.
  */
-status_t MMCAU_SHA1_HashN(const uint8_t *msgData, uint32_t numBlocks, uint8_t *sha1State);
+status_t MMCAU_SHA1_HashN(const uint8_t *msgData, uint32_t numBlocks, uint32_t *sha1State);
 
 /*!
  * @brief SHA1: Updates SHA1 state variables
@@ -209,7 +222,7 @@ status_t MMCAU_SHA1_HashN(const uint8_t *msgData, uint32_t numBlocks, uint8_t *s
  *        as it is called internally to start a new hash.
  *        All input message blocks must be contiguous.
  */
-status_t MMCAU_SHA1_Update(const uint8_t *msgData, uint32_t numBlocks, uint8_t *sha1State);
+status_t MMCAU_SHA1_Update(const uint8_t *msgData, uint32_t numBlocks, uint32_t *sha1State);
 
 /*!
  * @brief SHA256: Initializes the SHA256 state variables
@@ -219,10 +232,10 @@ status_t MMCAU_SHA1_Update(const uint8_t *msgData, uint32_t numBlocks, uint8_t *
  *
  * @param[out] sha256State Pointer to 256-bit block of SHA2 state variables a,b,c,d,e,f,g,h
  * @return kStatus_Success No error. CAU hardware support for SHA256 is present.
- * @return kStatus_Fail Error. CAU hardware support for SHA256 is not present. 
- * @return kStatus_InvalidArgument Error. sha256State is NULL. 
+ * @return kStatus_Fail Error. CAU hardware support for SHA256 is not present.
+ * @return kStatus_InvalidArgument Error. sha256State is NULL.
  */
-status_t MMCAU_SHA256_InitializeOutput(uint8_t *sha256State);
+status_t MMCAU_SHA256_InitializeOutput(uint32_t *sha256State);
 
 /*!
  * @brief SHA256: Updates SHA256 state variables with n message blocks
@@ -236,7 +249,7 @@ status_t MMCAU_SHA256_InitializeOutput(uint8_t *sha256State);
  *        The MMCAU_SHA256_InitializeOutput() function must be called when starting a new hash.
  *        Useful when handling non-contiguous input message blocks.
  */
-status_t MMCAU_SHA256_HashN(const uint8_t *input, uint32_t numBlocks, uint8_t *sha256State);
+status_t MMCAU_SHA256_HashN(const uint8_t *input, uint32_t numBlocks, uint32_t *sha256State);
 
 /*!
  * @brief SHA256: Updates SHA256 state variables
@@ -252,6 +265,12 @@ status_t MMCAU_SHA256_HashN(const uint8_t *input, uint32_t numBlocks, uint8_t *s
  *        as it is called internally to start a new hash.
  *        All input message blocks must be contiguous.
  */
-status_t MMCAU_SHA256_Update(const uint8_t *input, uint32_t numBlocks, uint8_t *sha256State);
+status_t MMCAU_SHA256_Update(const uint8_t *input, uint32_t numBlocks, uint32_t *sha256State);
+
+#if defined(__cplusplus)
+}
+#endif
+
+/*! @}*/
 
 #endif /* _FSL_MMCAU_H_ */
