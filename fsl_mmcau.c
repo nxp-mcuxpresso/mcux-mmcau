@@ -130,9 +130,6 @@ static status_t mmcau_AesCrypt(const uint8_t *in, const uint8_t *keySch, uint32_
             case 14u:
                 keySchSize = 60u;
                 break;
-            default:
-                keySchSize = 0;
-                break;
         }
 
         /* align pointers */
@@ -315,10 +312,6 @@ status_t MMCAU_AES_SetKey(const uint8_t *key, const size_t keySize, uint8_t *key
 
                 case 32u:
                     sizeOut = 60u;
-                    break;
-
-                default:
-                    sizeOut = 0u;
                     break;
             }
             mmcau_memcpy(keySch, keySchAlign, sizeOut);
