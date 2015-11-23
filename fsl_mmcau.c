@@ -112,7 +112,7 @@ static status_t mmcau_AesCrypt(const uint8_t *in, const uint8_t *keySch, uint32_
         uint8_t inAlign[MMCAU_AES_BLOCK_SIZE];  /* 16 bytes aligned input block */
         uint8_t outAlign[MMCAU_AES_BLOCK_SIZE]; /* 16 bytes aligned output block */
         uint32_t keySchAlign[60];               /* max 60 longwords in case of 32 bytes AES key */
-        size_t keySchSize;
+        size_t keySchSize = 0;
         const uint8_t *keySchWork;
         const uint8_t *inWork;
         uint8_t *outWork;
@@ -291,7 +291,7 @@ status_t MMCAU_AES_SetKey(const uint8_t *key, const size_t keySize, uint8_t *key
         const uint8_t *keyWork;         /* aligned CAU lib input address argument */
         uint8_t *keySchWork;            /* aligned CAU lib output address argument */
         bool copyOut;
-        size_t sizeOut;
+        size_t sizeOut = 0;
 
         keyWork = mmcau_align_const(key, keyAlign, sizeof(keyAlign));
         keySchWork = mmcau_align(keySch, keySchAlign, &copyOut);
