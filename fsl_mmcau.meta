@@ -1,33 +1,6 @@
 <!-- This file is maintained by driver author -->
 <metadata>  <components>    <component name="middleware.mmcau.support" requires="devices.modules.D_IP_MMCAU_APB3_SYN_001"/>
     
-    <component name="middleware.mmcau.support" requires="platform.devices.MK11DA5"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK21DA5"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK21FA12"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK24F12"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK26F18"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK52D10"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK53D10"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK60D10"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK63F12"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK64F12"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK65F18"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK66F18"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK70F12"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK70F15"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK80F25615"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK81F25615"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MK82F25615"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKL28T7_CORE0"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKL28T7_CORE1"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKL28Z7"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKM34Z7"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKV56F22"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKV58F22"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKW21D5"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKW22D5"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKW24D5"/>
-    
     <component name="middleware.mmcau" requires="middleware.mmcau.support" provides="middleware">      <source path="./">        <files mask="cau_api.h"/>
         <files mask="fsl_mmcau.c"/>
         <files mask="fsl_mmcau.h"/>
