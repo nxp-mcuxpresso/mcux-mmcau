@@ -28,7 +28,7 @@
     <component name="middleware.mmcau.support" requires="platform.devices.MKW22D5"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW24D5"/>
     
-    <component name="middleware.mmcau" requires="middleware.mmcau.support" provides="middleware">      <source path="./">
+    <component name="middleware.mmcau" requires="middleware.mmcau.support" provides="middleware" type="middleware">      <source path="./">
         <files mask="*.meta"/>        <files mask="cau_api.h"/>
         <files mask="fsl_mmcau.c"/>
         <files mask="fsl_mmcau.h"/>
