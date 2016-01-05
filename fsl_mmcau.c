@@ -119,19 +119,17 @@ static status_t mmcau_AesCrypt(const uint8_t *in, const uint8_t *keySch, uint32_
         bool copyOut;
 
         /* compute keySchSize in bytes per CAU API documentation */
-        switch (aesRounds)
+        if (aesRounds == 10u)
         {
-            case 10u:
-                keySchSize = 44u;
-                break;
-            case 12u:
-                keySchSize = 52u;
-                break;
-            case 14u:
-                keySchSize = 60u;
-                break;
-            default:
-                break;
+            keySchSize = 44u;
+        }
+        else if (aesRounds == 12u)
+        {
+            keySchSize = 52u;
+        }
+        else /* aesRounds = 14u */
+        {
+            keySchSize = 60u;
         }
 
         /* align pointers */
@@ -302,22 +300,19 @@ status_t MMCAU_AES_SetKey(const uint8_t *key, const size_t keySize, uint8_t *key
         /* in case we have aligned output to local, copy the result out */
         if (copyOut)
         {
-            switch (keySize)
+            if (keySize == 16u)
             {
-                case 16u:
-                    sizeOut = 44u;
-                    break;
-
-                case 24u:
-                    sizeOut = 52u;
-                    break;
-
-                case 32u:
-                    sizeOut = 60u;
-                    break;
-                default:
-                    break;
+                sizeOut = 44u;
             }
+            else if (keySize == 24u)
+            {
+                sizeOut = 52u;
+            }
+            else /* keySize = 32u */
+            {
+                sizeOut = 60u;
+            }
+
             mmcau_memcpy(keySch, keySchAlign, sizeOut);
         }
 
