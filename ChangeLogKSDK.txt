@@ -1,4 +1,4 @@
-/*
+/*!
 @page middleware_log Middleware Change Log
  
 @section mmcau MMCAU library for KSDK
