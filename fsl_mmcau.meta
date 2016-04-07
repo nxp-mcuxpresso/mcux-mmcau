@@ -28,8 +28,8 @@
     <component name="middleware.mmcau.support" requires="platform.devices.MKL28T7_CORE1"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKL28Z7"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKM34Z7"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKV56F22"/>
-    <component name="middleware.mmcau.support" requires="platform.devices.MKV58F22"/>
+    <component name="middleware.mmcau.support" requires="platform.devices.MKV56F24"/>
+    <component name="middleware.mmcau.support" requires="platform.devices.MKV58F24"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW21D5"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW22D5"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW24D5"/>
