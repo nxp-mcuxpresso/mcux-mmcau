@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!-- This file is maintained by driver author -->
+<?xml version='1.0' encoding='UTF-8'?>
 <metadata>
   <components>
     <component name="middleware.mmcau.support" requires="devices.modules.D_IP_MMCAU_APB3_SYN_001">
@@ -33,7 +32,7 @@
     <component name="middleware.mmcau.support" requires="platform.devices.MKW21D5"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW22D5"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW24D5"/>
-    <component name="middleware.mmcau" requires="middleware.mmcau.support" provides="middleware" type="middleware" version="2.0.0">
+    <component name="middleware.mmcau" requires="middleware.mmcau.support" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
       <source path="./asm-cm0p">
         <files mask="*.a"/>
         <files mask="*.lib"/>
