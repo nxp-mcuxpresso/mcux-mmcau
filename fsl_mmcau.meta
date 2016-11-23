@@ -28,16 +28,35 @@
     <component name="middleware.mmcau.support" requires="platform.devices.MKW21D5"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW22D5"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW24D5"/>
-    <component name="middleware.mmcau" requires="middleware.mmcau.support" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
+    
+    <component name="middleware.mmcau_common" requires="middleware.mmcau.support" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">      
       <source path="./">
-        <files mask="*.meta"/>
+        <files mask="fsl_mmcau.c"/>
+        <files mask="fsl_mmcau.h"/>
+        <files mask="cau_api.h"/>        
       </source>
+    </component>
+    
+    <component name="middleware.mmcau_cm4_cm7" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
+      <source path="./asm-cm4-cm7">
+        <files mask="*.a"/>
+      </source>
+    </component>
+    
+    <component name="middleware.mmcau_cm0p" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
       <source path="./asm-cm0p">
         <files mask="*.a"/>
+      </source>
+    </component>
+    
+    <component name="middleware.mmcau_files" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
+      <source path="./">
+        <files mask="*.meta"/>
+        <files mask="*.txt"/>
+      <source path="./asm-cm0p">
         <files mask="*.lib"/>
       </source>
       <source path="./asm-cm4-cm7">
-        <files mask="*.a"/>
         <files mask="*.lib"/>
       </source>
       <source path="./asm-cm0p/src">
@@ -47,14 +66,6 @@
       <source path="./asm-cm4-cm7/src">
         <files mask="*.hdr"/>
         <files mask="*.s"/>
-      </source>
-      <source path="./">
-        <files mask="*.meta"/>
-        <files mask="cau_api.h"/>
-        <files mask="fsl_mmcau.c"/>
-        <files mask="fsl_mmcau.h"/>
-        <files mask="cau_api.h"/>
-        <files mask="*.txt"/>
       </source>
     </component>
   </components>
