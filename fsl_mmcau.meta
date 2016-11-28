@@ -53,6 +53,7 @@
       <source path="./">
         <files mask="*.meta"/>
         <files mask="*.txt"/>
+      </source>
       <source path="./asm-cm0p">
         <files mask="*.lib"/>
       </source>
