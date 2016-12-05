@@ -29,7 +29,7 @@
     <component name="middleware.mmcau.support" requires="platform.devices.MKW22D5"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW24D5"/>
     
-    <component name="middleware.mmcau_common" requires="middleware.mmcau.support" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">      
+    <component name="middleware.mmcau_common" description="Application interface for MMCAU library" requires="middleware.mmcau.support" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">      
       <source path="./">
         <files mask="fsl_mmcau.c"/>
         <files mask="fsl_mmcau.h"/>
@@ -37,19 +37,19 @@
       </source>
     </component>
     
-    <component name="middleware.mmcau_cm4_cm7" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
+    <component name="middleware.mmcau_cm4_cm7" description="MMCAU library object files for ARM Cortex M4/M7 core" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
       <source path="./asm-cm4-cm7">
         <files mask="*.a"/>
       </source>
     </component>
     
-    <component name="middleware.mmcau_cm0p" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
+    <component name="middleware.mmcau_cm0p" description="MMCAU library object files for ARM Cortex M0+ core" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
       <source path="./asm-cm0p">
         <files mask="*.a"/>
       </source>
     </component>
     
-    <component name="middleware.mmcau_files" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
+    <component name="middleware.mmcau_files" description="Documentation and other" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
       <source path="./">
         <files mask="*.meta"/>
         <files mask="*.txt"/>
