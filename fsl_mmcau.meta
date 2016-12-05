@@ -37,15 +37,27 @@
       </source>
     </component>
     
-    <component name="middleware.mmcau_cm4_cm7" description="MMCAU library object files for ARM Cortex M4/M7 core" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
-      <source path="./asm-cm4-cm7">
+    <component name="middleware.mmcau_cm4_cm7_core" requires="devices.core.Cortex-M4"/>
+    <component name="middleware.mmcau_cm4_cm7_core" requires="devices.core.Cortex-M4F"/>
+    <component name="middleware.mmcau_cm4_cm7_core" requires="devices.core.Cortex-M7F"/>
+    <component name="middleware.mmcau_compilers_gcc_iar" requires="compilers.iar"/>
+    <component name="middleware.mmcau_compilers_gcc_iar" requires="compilers.gcc"/>    
+    
+    <component name="middleware.mmcau_cm4_cm7" description="MMCAU library object files for ARM Cortex M4/M7 core" requires="middleware.mmcau.support middleware.mmcau_cm4_cm7_core middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
+      <source path="./asm-cm4-cm7" requires="middleware.mmcau_compilers_gcc_iar">
         <files mask="*.a"/>
+      </source>
+      <source path="./asm-cm4-cm7" requires="compilers.arm">
+        <files mask="*.lib"/>
       </source>
     </component>
     
-    <component name="middleware.mmcau_cm0p" description="MMCAU library object files for ARM Cortex M0+ core" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
-      <source path="./asm-cm0p">
+    <component name="middleware.mmcau_cm0p" description="MMCAU library object files for ARM Cortex M0+ core" requires="middleware.mmcau.support devices.core.Cortex-M0P middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
+      <source path="./asm-cm0p" requires="middleware.mmcau_compilers_gcc_iar">
         <files mask="*.a"/>
+      </source>
+      <source path="./asm-cm0p" requires="compilers.arm">
+        <files mask="*.lib"/>
       </source>
     </component>
     
@@ -54,17 +66,11 @@
         <files mask="*.meta"/>
         <files mask="*.txt"/>
       </source>
-      <source path="./asm-cm0p">
-        <files mask="*.lib"/>
-      </source>
-      <source path="./asm-cm4-cm7">
-        <files mask="*.lib"/>
-      </source>
-      <source path="./asm-cm0p/src">
+      <source path="./asm-cm0p/src" requires="devices.core.Cortex-M0P">
         <files mask="*.hdr"/>
         <files mask="*.s"/>
       </source>
-      <source path="./asm-cm4-cm7/src">
+      <source path="./asm-cm4-cm7/src" requires="middleware.mmcau_cm4_cm7_core">
         <files mask="*.hdr"/>
         <files mask="*.s"/>
       </source>
