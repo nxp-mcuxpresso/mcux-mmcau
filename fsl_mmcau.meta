@@ -60,7 +60,7 @@
         <files mask="*.lib"/>
       </source>
     </component>
-    <component name="middleware.mmcau_files" description="Documentation and other" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
+    <component name="middleware.mmcau_files" description="Documentation and other" requires="middleware.mmcau.support middleware.mmcau_common" provides="middleware" type="other" version="2.0.0" change_log="./ChangeLogKSDK.txt">
       <source path="./">
         <files mask="*.txt"/>
       </source>
