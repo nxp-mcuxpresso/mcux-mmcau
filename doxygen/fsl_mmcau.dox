@@ -1,20 +1,20 @@
 /*!
 
 @defgroup mmcau Memory-Mapped Cryptographic Acceleration Unit (MMCAU)
-@details The Kinetis mmCAU software library uses the mmCAU co-processor that is connected to the Kinetis ARM Cortex-M4/M0+ Private Peripheral Bus (PPB). 
+@details The mmCAU software library uses the mmCAU co-processor that is connected to the ARM Cortex-M4/M0+ Private Peripheral Bus (PPB). 
 In this chapter, CAU refers to both CAU and mmCAU unless explicitly noted. 
 
 # Purpose {#MMCAUPurpose}
 
 The following chapter describes  how to use the mmCAU software library in any application to integrate a cryptographic algorithm or 
-hashing function supported by the software library. Freescale products supported by the software library are Kinetis MCU/MPUs. 
+hashing function supported by the software library. Freescale products supported by the software library are MCU/MPUs. 
 Check the specific Freescale product for CAU availability.
 
 # Library Features {#MMCAULF}
 
 The library is as compact and generic as possible to simplify the integration with existing cryptographic software. 
 The library has a standard header file with ANSI C prototypes for all functions: "cau_api.h". This software library is thread safe only if CAU registers 
-are saved on a context switch. The Kinetis mmCAU software library is also compatible to ARM C compiler conventions (EABI). 
+are saved on a context switch. The mmCAU software library is also compatible to ARM C compiler conventions (EABI). 
 All pointers passed to mmCAU API functions (input and output data blocks, keys, key schedules, and so on) are aligned to 0-modulo-4 addresses.<br>
 For applications that don't need to deal with the aligned addresses, a simple wrapper layer is provided. The wrapper layer consists of the "fsl_mmcau.h" header file 
 and "fsl_mmcau.c" source code file. The only function of the wrapper layer is that it supports unaligned addresses <br>.
@@ -114,7 +114,7 @@ The software library contains the following files:
     </tr>
     <tr>
         <td>lib_mmcau.a</td>
-        <td>mmCAU library: Kinetis</td>
+        <td>mmCAU library</td>
     </tr>
 </table>
 <b><i>Table 2: File Description</i></b>
