@@ -7,7 +7,7 @@ In this chapter, CAU refers to both CAU and mmCAU unless explicitly noted.
 # Purpose {#MMCAUPurpose}
 
 The following chapter describes  how to use the mmCAU software library in any application to integrate a cryptographic algorithm or 
-hashing function supported by the software library. Freescale products supported by the software library are MCU/MPUs. 
+hashing function supported by the software library. NXP products supported by the software library are MCU/MPUs. 
 Check the specific Freescale product for CAU availability.
 
 # Library Features {#MMCAULF}
