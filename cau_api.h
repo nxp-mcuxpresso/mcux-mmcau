@@ -73,11 +73,11 @@ extern "C" {
  * @param key_size Key size in bits (128, 192, 256)
  * @param[out] key_sch Pointer to key schedule output (44, 52, 60 longwords)
  * @note All pointers must have word (4 bytes) alignment
- * @note Table below shows the requirements for the cau_aes_set_key() function when using AES128, AES192 or AES256.@n
- * | [in] Key Size (bits)    |  [out] Key Schedule Size (32 bit data values)  |@n
- * | :---------------------: | :--------------------------------------------: |@n
- * |          128            |                      44                        |@n
- * |          192            |                      52                        |@n
+ * @note Table below shows the requirements for the cau_aes_set_key() function when using AES128, AES192 or AES256.
+ * | [in] Key Size (bits)    |  [out] Key Schedule Size (32 bit data values)  |
+ * | :---------------------: | :--------------------------------------------: |
+ * |          128            |                      44                        |
+ * |          192            |                      52                        |
  * |          256            |                      60                        |
  */
 void cau_aes_set_key(const unsigned char *key, const int key_size, unsigned char *key_sch);
@@ -94,11 +94,11 @@ void cau_aes_set_key(const unsigned char *key, const int key_size, unsigned char
  * @note All pointers must have word (4 bytes) alignment
  * @note   Input and output blocks may overlap.@n
  *         Table below shows the requirements for the cau_aes_encrypt()/cau_aes_decrypt()
- *         function when using AES128, AES192 or AES256.@n
- * | Block Cipher | [in] Key Schedule Size (longwords) | [in] Number of AES rounds |@n
- * | :----------: | :--------------------------------: | :-----------------------: |@n
- * |    AES128    |               44                   |             10            |@n
- * |    AES192    |               52                   |             12            |@n
+ *         function when using AES128, AES192 or AES256.
+ * | Block Cipher | [in] Key Schedule Size (longwords) | [in] Number of AES rounds |
+ * | :----------: | :--------------------------------: | :-----------------------: |
+ * |    AES128    |               44                   |             10            |
+ * |    AES192    |               52                   |             12            |
  * |    AES256    |               60                   |             14            |
  */
 void cau_aes_encrypt(const unsigned char *in, const unsigned char *key_sch, const int nr, unsigned char *out);
@@ -115,11 +115,11 @@ void cau_aes_encrypt(const unsigned char *in, const unsigned char *key_sch, cons
  * @note All pointers must have word (4 bytes) alignment
  * @note   Input and output blocks may overlap.@n
  *         Table below shows the requirements for the cau_aes_encrypt()/cau_aes_decrypt()
- *         function when using AES128, AES192 or AES256.@n
- * | Block Cipher | [in] Key Schedule Size (longwords) | [in] Number of AES rounds |@n
- * | :----------: | :--------------------------------: | :-----------------------: |@n
- * |    AES128    |               44                   |             10            |@n
- * |    AES192    |               52                   |             12            |@n
+ *         function when using AES128, AES192 or AES256.
+ * | Block Cipher | [in] Key Schedule Size (longwords) | [in] Number of AES rounds |
+ * | :----------: | :--------------------------------: | :-----------------------: |
+ * |    AES128    |               44                   |             10            |
+ * |    AES192    |               52                   |             12            |
  * |    AES256    |               60                   |             14            |
  */
 void cau_aes_decrypt(const unsigned char *in, const unsigned char *key_sch, const int nr, unsigned char *out);
@@ -279,7 +279,7 @@ void cau_sha1_hash(const unsigned char *msg_data, unsigned int *sha1_state);
  * This function initializes the SHA256 state variables.
  * The output can be used as input to cau_sha256_hash() and cau_sha256_hash_n().
  *
- * @param[out] sha256_state Pointer to 256-bit block of SHA2 state variables a,b,c,d,e,f,g,h
+ * @param[out] output Pointer to 256-bit block of SHA2 state variables a,b,c,d,e,f,g,h
  * @note All pointers must have word (4 bytes) alignment
  * @return 0 No error. CAU hardware support for SHA256 is present.
  * @return -1 Error. CAU hardware support for SHA256 is not present.
@@ -291,9 +291,9 @@ int cau_sha256_initialize_output(const unsigned int *output);
  *
  * This function updates SHA256 state variables for one or more input message blocks
  *
- * @param msg_data Pointer to start of input message data
+ * @param input Pointer to start of input message data
  * @param num_blks Number of 512-bit blocks to process
- * @param[in,out] sha256_state Pointer to 256-bit block of SHA2 state variables: a,b,c,d,e,f,g,h
+ * @param[in,out] output Pointer to 256-bit block of SHA2 state variables: a,b,c,d,e,f,g,h
  * @note All pointers must have word (4 bytes) alignment
  * @note  Input message and digest output blocks must not overlap.
  *        The cau_sha256_initialize_output() function must be called when starting a new hash.
@@ -307,9 +307,9 @@ void cau_sha256_hash_n(const unsigned char *input, const int num_blks, unsigned 
  * This function updates SHA256 state variables for one or more input message blocks.
  * It starts a new hash as it internally calls cau_sha256_initialize_output() first.
  *
- * @param msg_data Pointer to start of input message data
+ * @param input Pointer to start of input message data
  * @param num_blks Number of 512-bit blocks to process
- * @param[out] sha256_state Pointer to 256-bit block of SHA2 state variables: a,b,c,d,e,f,g,h
+ * @param[out] output Pointer to 256-bit block of SHA2 state variables: a,b,c,d,e,f,g,h
  * @note All pointers must have word (4 bytes) alignment
  * @note  Input message and digest output blocks must not overlap.
  *        The cau_sha256_initialize_output() function is not required to be called
@@ -323,8 +323,8 @@ void cau_sha256_update(const unsigned char *input, const int num_blks, unsigned 
  *
  * This function updates SHA256 state variables for one input message block
  *
- * @param msg_data Pointer to start of 512-bits of input message data
- * @param[in,out] sha256_state Pointer to 256-bit block of SHA2 state variables: a,b,c,d,e,f,g,h
+ * @param input Pointer to start of 512-bits of input message data
+ * @param[in,out] output Pointer to 256-bit block of SHA2 state variables: a,b,c,d,e,f,g,h
  * @note All pointers must have word (4 bytes) alignment
  * @note  Input message and digest output blocks must not overlap.
  *        The cau_sha256_initialize_output() function must be called when starting a new hash.
