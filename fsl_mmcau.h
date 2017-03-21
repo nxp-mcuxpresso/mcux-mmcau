@@ -54,11 +54,11 @@ extern "C" {
  * @param key Pointer to input key (128, 192, 256 bits in length).
  * @param keySize Key size in bytes (16, 24, 32)
  * @param[out] keySch Pointer to key schedule output (44, 52, 60 longwords)
- * @note Table below shows the requirements for the MMCAU_AES_SetKey() function when using AES128, AES192, or AES256.@n
- * | [in] Key Size (bits)    |  [out] Key Schedule Size (32 bit data values)  |@n
- * | :---------------------: | :--------------------------------------------: |@n
- * |          128            |                      44                        |@n
- * |          192            |                      52                        |@n
+ * @note Table below shows the requirements for the MMCAU_AES_SetKey() function when using AES128, AES192, or AES256.
+ * | [in] Key Size (bits)    |  [out] Key Schedule Size (32 bit data values)  |
+ * | :---------------------: | :--------------------------------------------: |
+ * |          128            |                      44                        |
+ * |          192            |                      52                        |
  * |          256            |                      60                        |
  * @return Status of the operation. (kStatus_Success, kStatus_InvalidArgument, kStatus_Fail)
  */
@@ -75,11 +75,11 @@ status_t MMCAU_AES_SetKey(const uint8_t *key, const size_t keySize, uint8_t *key
  * @param[out] out Pointer to 16-byte block of output ciphertext.
  * @note   Input and output blocks may overlap.@n
  *         Table below shows the requirements for the MMCAU_AES_EncryptEcb()/MMCAU_AES_DecryptEcb()
- *         function when using AES128, AES192 or AES256.@n
- * | Block Cipher | [in] Key Schedule Size (longwords) | [in] Number of AES rounds |@n
- * | :----------: | :--------------------------------: | :-----------------------: |@n
- * |    AES128    |               44                   |             10            |@n
- * |    AES192    |               52                   |             12            |@n
+ *         function when using AES128, AES192 or AES256.
+ * | Block Cipher | [in] Key Schedule Size (longwords) | [in] Number of AES rounds |
+ * | :----------: | :--------------------------------: | :-----------------------: |
+ * |    AES128    |               44                   |             10            |
+ * |    AES192    |               52                   |             12            |
  * |    AES256    |               60                   |             14            |
  * @return Status of the operation. (kStatus_Success, kStatus_InvalidArgument, kStatus_Fail)
  */
@@ -96,11 +96,11 @@ status_t MMCAU_AES_EncryptEcb(const uint8_t *in, const uint8_t *keySch, uint32_t
  * @param[out] out Pointer to 16-byte block of output plaintext.
  * @note   Input and output blocks may overlap.@n
  *         Table below shows the requirements for the cau_aes_encrypt()/cau_aes_decrypt().
- *         function when using AES128, AES192 or AES256.@n
- * | Block Cipher | [in] Key Schedule Size (longwords) | [in] Number of AES rounds |@n
- * | :----------: | :--------------------------------: | :-----------------------: |@n
- * |    AES128    |               44                   |             10            |@n
- * |    AES192    |               52                   |             12            |@n
+ *         function when using AES128, AES192 or AES256.
+ * | Block Cipher | [in] Key Schedule Size (longwords) | [in] Number of AES rounds |
+ * | :----------: | :--------------------------------: | :-----------------------: |
+ * |    AES128    |               44                   |             10            |
+ * |    AES192    |               52                   |             12            |
  * |    AES256    |               60                   |             14            |
  * @return Status of the operation. (kStatus_Success, kStatus_InvalidArgument, kStatus_Fail)
  */
@@ -242,7 +242,7 @@ status_t MMCAU_SHA256_InitializeOutput(uint32_t *sha256State);
  *
  * This function updates SHA256 state variables for one or more input message blocks.
  *
- * @param msgData Pointer to start of input message data.
+ * @param input Pointer to start of input message data.
  * @param numBlocks Number of 512-bit blocks to process.
  * @param[in,out] sha256State Pointer to 256-bit block of SHA2 state variables: a, b, c, d, e, f, g, h.
  * @note  Input message and digest output blocks must not overlap.
@@ -257,7 +257,7 @@ status_t MMCAU_SHA256_HashN(const uint8_t *input, uint32_t numBlocks, uint32_t *
  * This function updates the SHA256 state variables for one or more input message blocks.
  * It starts a new hash as it internally calls cau_sha256_initialize_output() first.
  *
- * @param msgData Pointer to start of input message data.
+ * @param input Pointer to start of input message data.
  * @param numBlocks Number of 512-bit blocks to process.
  * @param[out] sha256State Pointer to 256-bit block of SHA2 state variables: a, b, c, d, e, f, g, h.
  * @note  Input message and digest output blocks must not overlap.
