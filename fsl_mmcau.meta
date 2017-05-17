@@ -28,6 +28,7 @@
     <component name="middleware.mmcau.support" requires="platform.devices.MKW21D5"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW22D5"/>
     <component name="middleware.mmcau.support" requires="platform.devices.MKW24D5"/>
+    <component name="middleware.mmcau.support" requires="platform.devices.MCIMX7U5"/>
     <component name="middleware.mmcau_common" description="Application interface for MMCAU library" requires="middleware.mmcau.support" provides="middleware" type="middleware" version="2.0.0" change_log="./ChangeLogKSDK.txt">
       <source path="./">
         <files mask="fsl_mmcau.c"/>
