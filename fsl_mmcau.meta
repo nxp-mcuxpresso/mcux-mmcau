@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <metadata>
   <components>
-    <component name="middleware.mmcau" requires="middleware.mmcau.support" type="middleware" change_log="./ChangeLogKSDK.txt" description="Application interface for MMCAU library" version="2.0.0">
+    <component name="middleware.mmcau" requires="middleware.mmcau.support" type="middleware" change_log="./ChangeLogKSDK.txt" description="Application interface for MMCAU library" version="2.0.1">
       <source path="./">
         <files mask="fsl_mmcau.meta"/>
       </source>
@@ -13,7 +13,7 @@
         <files mask="fsl_mmcau.c"/>
       </source>
     </component>
-    <component name="middleware.mmcau_cm4_cm7" requires="middleware.mmcau.support middleware.mmcau_cm4_cm7_core middleware.mmcau" type="middleware" change_log="./ChangeLogKSDK.txt" description="MMCAU library object files for ARM Cortex M4/M7 core" version="2.0.0">
+    <component name="middleware.mmcau_cm4_cm7" requires="middleware.mmcau.support middleware.mmcau_cm4_cm7_core middleware.mmcau">
       <source path="./asm-cm4-cm7/" requires="compilers.arm">
         <files mask="lib_mmcau.lib"/>
       </source>

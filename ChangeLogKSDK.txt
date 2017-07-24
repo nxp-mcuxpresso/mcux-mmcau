@@ -2,7 +2,11 @@
 @page middleware_log Middleware Change Log
  
 @section mmcau MMCAU library for KSDK
-  Current version is 2.0.0.
+  Current version is 2.0.1.
+ 
+  - 2.0.1
+    - Bug fixes:
+      - KPSDK-17133 fix bug in fsl_mmcau.c when AES key schedule array is not aligned
  
   - 2.0.0
     - New Features:

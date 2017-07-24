@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015, Freescale Semiconductor, Inc.
+ * Copyright 2017, NXP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
@@ -12,7 +13,7 @@
  *   list of conditions and the following disclaimer in the documentation and/or
  *   other materials provided with the distribution.
  *
- * o Neither the name of Freescale Semiconductor, Inc. nor the names of its
+ * o Neither the name of the copyright holder nor the names of its
  *   contributors may be used to endorse or promote products derived from this
  *   software without specific prior written permission.
  *
@@ -121,15 +122,15 @@ static status_t mmcau_AesCrypt(const uint8_t *in, const uint8_t *keySch, uint32_
         /* compute keySchSize in bytes per CAU API documentation */
         if (aesRounds == 10u)
         {
-            keySchSize = 44u;
+            keySchSize = 44u * sizeof(uint32_t);
         }
         else if (aesRounds == 12u)
         {
-            keySchSize = 52u;
+            keySchSize = 52u * sizeof(uint32_t);
         }
         else /* aesRounds = 14u */
         {
-            keySchSize = 60u;
+            keySchSize = 60u * sizeof(uint32_t);
         }
 
         /* align pointers */
@@ -302,15 +303,15 @@ status_t MMCAU_AES_SetKey(const uint8_t *key, const size_t keySize, uint8_t *key
         {
             if (keySize == 16u)
             {
-                sizeOut = 44u;
+                sizeOut = 44u * sizeof(uint32_t);
             }
             else if (keySize == 24u)
             {
-                sizeOut = 52u;
+                sizeOut = 52u * sizeof(uint32_t);
             }
             else /* keySize = 32u */
             {
-                sizeOut = 60u;
+                sizeOut = 60u * sizeof(uint32_t);
             }
 
             mmcau_memcpy(keySch, keySchAlign, sizeOut);
