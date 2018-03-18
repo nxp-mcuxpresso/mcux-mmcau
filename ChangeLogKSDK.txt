@@ -1,8 +1,8 @@
 /*!
 @page middleware_log Middleware Change Log
  
-@section mmcau MMCAU library for KSDK
-  The current version of MMCAU is 2.0.1.
+@section mmcau MMCAU library 
+  The current version is 2.0.1.
  
   - 2.0.1
     - Bug fixes:
