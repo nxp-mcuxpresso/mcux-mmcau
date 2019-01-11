@@ -3,7 +3,7 @@
  * Copyright 2017, NXP
  * All rights reserved.
  *
- * 
+ *
  * SPDX-License-Identifier: BSD-3-Clause
  */
 
@@ -31,7 +31,7 @@ typedef void (*cau_hash_md5_api_t)(const uint8_t *msgData, const int numBlocks, 
  ******************************************************************************/
 static void mmcau_memcpy(void *dst, const void *src, size_t size)
 {
-    register uint8_t *to = dst;
+    register uint8_t *      to   = dst;
     register const uint8_t *from = src;
     while (size)
     {
@@ -63,12 +63,12 @@ static void *mmcau_align(void *out, void *outAlign, bool *copyOut)
     /* if one or two least significant bits in the address are set, the address is unaligned */
     if ((uint32_t)out & 3u)
     {
-        outWork = outAlign;
+        outWork  = outAlign;
         *copyOut = true;
     }
     else
     {
-        outWork = out;
+        outWork  = out;
         *copyOut = false;
     }
 
@@ -88,14 +88,14 @@ static status_t mmcau_AesCrypt(const uint8_t *in, const uint8_t *keySch, uint32_
     }
     else
     {
-        uint8_t inAlign[MMCAU_AES_BLOCK_SIZE];  /* 16 bytes aligned input block */
-        uint8_t outAlign[MMCAU_AES_BLOCK_SIZE]; /* 16 bytes aligned output block */
-        uint32_t keySchAlign[60];               /* max 60 longwords in case of 32 bytes AES key */
-        size_t keySchSize = 0;
+        uint8_t        inAlign[MMCAU_AES_BLOCK_SIZE];  /* 16 bytes aligned input block */
+        uint8_t        outAlign[MMCAU_AES_BLOCK_SIZE]; /* 16 bytes aligned output block */
+        uint32_t       keySchAlign[60];                /* max 60 longwords in case of 32 bytes AES key */
+        size_t         keySchSize = 0;
         const uint8_t *keySchWork;
         const uint8_t *inWork;
-        uint8_t *outWork;
-        bool copyOut;
+        uint8_t *      outWork;
+        bool           copyOut;
 
         /* compute keySchSize in bytes per CAU API documentation */
         if (aesRounds == 10u)
@@ -112,9 +112,9 @@ static status_t mmcau_AesCrypt(const uint8_t *in, const uint8_t *keySch, uint32_
         }
 
         /* align pointers */
-        inWork = mmcau_align_const(in, inAlign, MMCAU_AES_BLOCK_SIZE);
+        inWork     = mmcau_align_const(in, inAlign, MMCAU_AES_BLOCK_SIZE);
         keySchWork = mmcau_align_const(keySch, keySchAlign, keySchSize);
-        outWork = mmcau_align(out, outAlign, &copyOut);
+        outWork    = mmcau_align(out, outAlign, &copyOut);
 
         /* call actual CAU API */
         if (encrypt)
@@ -143,16 +143,16 @@ static status_t mmcau_DesCrypt(const uint8_t *in, const uint8_t *key, uint8_t *o
 
     if (in && key && out)
     {
-        uint8_t keyAlign[MMCAU_DES_BLOCK_SIZE]; /* 8 bytes key size aligned */
-        uint8_t inAlign[MMCAU_DES_BLOCK_SIZE];  /* 8 bytes input block aligned */
-        uint8_t outAlign[MMCAU_DES_BLOCK_SIZE]; /* 8 bytes output block aligned */
+        uint8_t        keyAlign[MMCAU_DES_BLOCK_SIZE]; /* 8 bytes key size aligned */
+        uint8_t        inAlign[MMCAU_DES_BLOCK_SIZE];  /* 8 bytes input block aligned */
+        uint8_t        outAlign[MMCAU_DES_BLOCK_SIZE]; /* 8 bytes output block aligned */
         const uint8_t *inWork;
         const uint8_t *keyWork;
-        uint8_t *outWork;
-        bool copyOut;
+        uint8_t *      outWork;
+        bool           copyOut;
 
         /* align pointers */
-        inWork = mmcau_align_const(in, inAlign, MMCAU_DES_BLOCK_SIZE);
+        inWork  = mmcau_align_const(in, inAlign, MMCAU_DES_BLOCK_SIZE);
         keyWork = mmcau_align_const(key, keyAlign, MMCAU_DES_BLOCK_SIZE);
         outWork = mmcau_align(out, outAlign, &copyOut);
 
@@ -188,13 +188,13 @@ static status_t mmcau_hash_API(
     if (msgData && hashState && numBlocks)
     {
         const uint8_t *msgDataWork;
-        void *hashStateWork;
-        uint8_t msgDataAlign[MMCAU_HASH_BLOCK_SIZE];
-        uint8_t hashStateAlign[MMCAU_HASH_STATE_SIZE];
-        bool copyInOut;
+        void *         hashStateWork;
+        uint8_t        msgDataAlign[MMCAU_HASH_BLOCK_SIZE];
+        uint8_t        hashStateAlign[MMCAU_HASH_STATE_SIZE];
+        bool           copyInOut;
 
         /* get aligned pointers */
-        msgDataWork = mmcau_align_const(msgData, msgDataAlign, MMCAU_HASH_BLOCK_SIZE);
+        msgDataWork   = mmcau_align_const(msgData, msgDataAlign, MMCAU_HASH_BLOCK_SIZE);
         hashStateWork = mmcau_align(hashState, hashStateAlign, &copyInOut);
         if (copyInOut)
         {
@@ -224,13 +224,13 @@ static status_t mmcau_hash_MD5API(
     if (msgData && hashState && numBlocks)
     {
         const uint8_t *msgDataWork;
-        void *hashStateWork;
-        uint8_t msgDataAlign[MMCAU_HASH_BLOCK_SIZE];
-        uint8_t hashStateAlign[MMCAU_HASH_STATE_SIZE];
-        bool copyInOut;
+        void *         hashStateWork;
+        uint8_t        msgDataAlign[MMCAU_HASH_BLOCK_SIZE];
+        uint8_t        hashStateAlign[MMCAU_HASH_STATE_SIZE];
+        bool           copyInOut;
 
         /* get aligned pointers */
-        msgDataWork = mmcau_align_const(msgData, msgDataAlign, MMCAU_HASH_BLOCK_SIZE);
+        msgDataWork   = mmcau_align_const(msgData, msgDataAlign, MMCAU_HASH_BLOCK_SIZE);
         hashStateWork = mmcau_align(hashState, hashStateAlign, &copyInOut);
         if (copyInOut)
         {
@@ -263,14 +263,14 @@ status_t MMCAU_AES_SetKey(const uint8_t *key, const size_t keySize, uint8_t *key
     }
     else
     {
-        uint8_t keyAlign[32] = {0};     /* max 32 bytes key supported by CAU lib */
-        uint32_t keySchAlign[60] = {0}; /* max 60 longwords in case of 32 bytes AES key */
-        const uint8_t *keyWork;         /* aligned CAU lib input address argument */
-        uint8_t *keySchWork;            /* aligned CAU lib output address argument */
-        bool copyOut;
-        size_t sizeOut = 0;
+        uint8_t        keyAlign[32]    = {0}; /* max 32 bytes key supported by CAU lib */
+        uint32_t       keySchAlign[60] = {0}; /* max 60 longwords in case of 32 bytes AES key */
+        const uint8_t *keyWork;               /* aligned CAU lib input address argument */
+        uint8_t *      keySchWork;            /* aligned CAU lib output address argument */
+        bool           copyOut;
+        size_t         sizeOut = 0;
 
-        keyWork = mmcau_align_const(key, keyAlign, sizeof(keyAlign));
+        keyWork    = mmcau_align_const(key, keyAlign, sizeof(keyAlign));
         keySchWork = mmcau_align(keySch, keySchAlign, &copyOut);
 
         /* call CAU lib API with all addresses aligned */
@@ -317,7 +317,7 @@ status_t MMCAU_DES_ChkParity(const uint8_t *key)
 
     if (key)
     {
-        uint8_t keyAlign[8]; /* 8 bytes key size aligned */
+        uint8_t        keyAlign[8]; /* 8 bytes key size aligned */
         const uint8_t *keyWork;
 
         /* align key[] */
@@ -359,8 +359,8 @@ status_t MMCAU_MD5_InitializeOutput(uint32_t *md5State)
     if (md5State)
     {
         uint8_t hashStateAlign[MMCAU_HASH_STATE_SIZE];
-        void *hashStateWork;
-        bool copyInOut;
+        void *  hashStateWork;
+        bool    copyInOut;
         /* align pointer */
         hashStateWork = mmcau_align(md5State, hashStateAlign, &copyInOut);
         if (copyInOut)
@@ -403,8 +403,8 @@ status_t MMCAU_SHA1_InitializeOutput(uint32_t *sha1State)
     if (sha1State)
     {
         uint8_t hashStateAlign[MMCAU_HASH_STATE_SIZE];
-        void *hashStateWork;
-        bool copyInOut;
+        void *  hashStateWork;
+        bool    copyInOut;
         /* align pointer */
         hashStateWork = mmcau_align(sha1State, hashStateAlign, &copyInOut);
         if (copyInOut)
@@ -443,13 +443,13 @@ status_t MMCAU_SHA1_Update(const uint8_t *msgData, uint32_t numBlocks, uint32_t 
 status_t MMCAU_SHA256_InitializeOutput(uint32_t *sha256State)
 {
     status_t status;
-    int ret;
+    int      ret;
 
     if (sha256State)
     {
         uint8_t hashStateAlign[MMCAU_HASH_STATE_SIZE];
-        void *hashStateWork;
-        bool copyInOut;
+        void *  hashStateWork;
+        bool    copyInOut;
         /* align pointer */
         hashStateWork = mmcau_align(sha256State, hashStateAlign, &copyInOut);
         if (copyInOut)
