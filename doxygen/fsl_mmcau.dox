@@ -1,6 +1,6 @@
 /*!
 
-@defgroup mmcau Memory-Mapped Cryptographic Acceleration Unit (MMCAU)
+@defgroup mmcau Memory-Mapped Cryptographic Acceleration Unit (mmCAU)
 @details The mmCAU software library uses the mmCAU co-processor that is connected to the ARM Cortex-M4/M0+ Private Peripheral Bus (PPB). 
 In this chapter, CAU refers to both CAU and mmCAU unless explicitly noted. 
 
