@@ -131,7 +131,11 @@ set_key_256:
     stmia   r2!, {r3-r7}                    @ store key_sch[0-4], key_sch++
 
 # calculate key_sch[5-7]
-    ldmia   r0, {r0-r1,r7}                  @ load key[5-7]
+#   ldmia   r0, {r0-r1,r7}                  @ load key[5-7]
+    adds    r0, #1<<2                       @ move by 4 byte, make ldmia interruptible in MMCAU
+    ldmia   r0!, {r1,r7}                    @ load key[6-7] and move r0 by 8 bytes
+    subs    r0, #3<<2                       @ move r0 back by 12 bytes
+    ldr     r0, [r0]                        @ load key[5]
     rev     r0, r0                          @ byterev(key[5]) = key_sch[5]
     rev     r1, r1                          @ byterev(key[6]) = key_sch[6]
     rev     r7, r7                          @ byterev(key[7]) = key_sch[7]
@@ -430,7 +434,7 @@ set_key_192:
 #   ldmia   r0, {r0-r1, r3-r6}              @ load key[0-5]
                                             @ make ldmia interuptible in MMCAU
     adds    r0, #1<<2                       @ move by 4 byte
-    ldmia   r0!, {r1, r3-r6}                @ load key[1-5] + mvoe by 20 byte
+    ldmia   r0!, {r1, r3-r6}                @ load key[1-5] + move by 20 byte
     subs    r0, #3<<3                       @ move back by 24byte
     ldr     r0, [r0]                        @ load key[0]
 
