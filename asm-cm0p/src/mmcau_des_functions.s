@@ -234,7 +234,7 @@ mmcau_des_decrypt:
     str     r4, [r7, #1<<2]
     str     r5, [r7, #2<<2]
     str     r6, [r7, #3<<2]
-    adds    r7, #1<<4    
+    adds    r7, #1<<4
 
 # send a series of 17 direct cau commands to perform the DES round operations
 #   *(MMCAU_PPB_DIRECT) = mmcau_3_cmds(DESK+DC,DESR+IP+KSR1,DESR+KSR2)   1- 3
