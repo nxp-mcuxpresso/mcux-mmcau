@@ -6,7 +6,7 @@
 
   - 2.0.2
     - Bug fixes:
-      - Re-writing ASM MMCAU lib to be interrupt for CM0+ by expanding LDM/STM instructions by a sequence of LDR and STR instructions.
+      - Re-writing ASM MMCAU lib to be interrupt safe on Cortex-M0+ core by expanding LDM/STM instructions by a sequence of LDR and STR instructions.
  
   - 2.0.1
     - Bug fixes:
