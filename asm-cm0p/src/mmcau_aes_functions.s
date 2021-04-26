@@ -420,10 +420,10 @@ set_key_192:
 
 # load some of the regs in preperation of the AES-192 set key calculations
 #   ldmia   r3, {r3-r6}    
-    mov     r7, r3                          @ make ldmia interuptible in MMCAU
-    adds    r3, #1<<2 
-    ldmia   r3!, {r4-r6}
-    ldr     r3, [r7]
+    mov     r7, r3                          @ make ldmia interuptible in MMCAU by storing r3 addr into scratch r7
+    adds    r3, #1<<2                       @ move r3 addr by 1 word
+    ldmia   r3!, {r4-r6}                    @ load from r3 (r7 + 1 word) to r4-r6 with writeback
+    ldr     r3, [r7]                        @ load to r3 from addres in scratch (r7)
 
     mov     r8, r3                          @ r8 = *rcon
     mov     r9, r4                          @ r9 = mmcau_1_cmd(AESS+CAA)
@@ -435,7 +435,7 @@ set_key_192:
                                             @ make ldmia interuptible in MMCAU
     adds    r0, #1<<2                       @ move by 4 byte
     ldmia   r0!, {r1, r3-r6}                @ load key[1-5] + move by 20 byte
-    subs    r0, #3<<3                       @ move back by 24byte
+    subs    r0, #6<<2                       @ move back by 24byte
     ldr     r0, [r0]                        @ load key[0]
 
 
