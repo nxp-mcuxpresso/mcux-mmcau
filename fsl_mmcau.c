@@ -45,9 +45,10 @@ static void mmcau_memcpy(void *dst, const void *src, size_t size)
 /* check if in pointer is aligned. if not, copy in to inAlign. return pointer to aligned data. */
 static const void *mmcau_align_const(const void *in, void *inAlign, size_t size)
 {
-    const void *inWork = in;
+    const void *inWork  = in;
+    const uint32_t *src = (const uint32_t *)in;
     /* if one or two least significant bits in the address are set, the address is unaligned */
-    if (0U != ((uint32_t)in & 0x3u))
+    if (0U != ((uint32_t)src & 0x3u))
     {
         mmcau_memcpy(inAlign, in, size);
         inWork = inAlign;
@@ -60,8 +61,9 @@ static const void *mmcau_align_const(const void *in, void *inAlign, size_t size)
 static void *mmcau_align(void *out, void *outAlign, bool *copyOut)
 {
     void *outWork;
+    uint32_t *dst = (uint32_t *)out;
     /* if one or two least significant bits in the address are set, the address is unaligned */
-    if (0U != ((uint32_t)out & 0x3u))
+    if (0U != ((uint32_t)dst & 0x3u))
     {
         outWork  = outAlign;
         *copyOut = true;
