@@ -1,0 +1,245 @@
+---
+middleware.mmcau.cm4_cm7:
+  section-type: component
+  __requires__:
+  - middleware.mmcau.ui_control middleware.mmcau.cm4_cm7_core.support middleware.mmcau.common_files driver.clock driver.common
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc-define:
+      iar:
+        config:
+          __common__:
+      mdk:
+        config:
+          release:
+            cc-flags:
+          debug:
+            cc-flags:
+          __common__:
+            ld-flags:
+            - "--diag_suppress=6238"
+      armgcc:
+        config:
+          __common__:
+      mcux:
+        config:
+          __common__:
+  contents:
+    repo_base_path: middleware/mmcau
+    project_base_path: mmcau
+    cc-include:
+    - repo_relative_path: "./"
+    files:
+    - source: asm-cm4-cm7/lib_mmcau.a
+      toolchains: armgcc mcux iar
+      attribute: extra-libraries
+    - source: asm-cm4-cm7/lib_mmcau.lib
+      toolchains: mdk
+      attribute: extra-libraries
+  component_info:
+    common:
+      description: MMCAU library for ARM Cortex M4/M7 core
+      version: 2.0.3
+      type: middleware
+      change_log: "./ChangeLogKSDK.txt"
+      component_bundle: bundles.mmcau
+      user_visible: true
+      manifest_name: mmcau_cm4_cm7
+      full_name: Kinetis MMCAU security function library for Arm Cortex-M4 and Cortex-M7
+middleware.mmcau.cm0p:
+  section-type: component
+  __requires__:
+  - middleware.mmcau.ui_control middleware.mmcau.cm0p.support middleware.mmcau.common_files driver.clock driver.common
+  configuration:
+    tools:
+      __common__:
+        config:
+          __common__:
+            cc-define:
+      iar:
+        config:
+          __common__:
+      mdk:
+        config:
+          release:
+            cc-flags:
+          debug:
+            cc-flags:
+          __common__:
+            ld-flags:
+            - "--diag_suppress=6238"
+            - "--diag_suppress=6306"
+      armgcc:
+        config:
+          __common__:
+      mcux:
+        config:
+          __common__:
+  contents:
+    repo_base_path: middleware/mmcau
+    project_base_path: mmcau
+    cc-include:
+    - repo_relative_path: "./"
+    files:
+    - source: asm-cm0p/lib_mmcau-cm0p.a
+      toolchains: armgcc mcux iar
+      attribute: extra-libraries
+    - source: asm-cm0p/lib_mmcau-cm0p.lib
+      toolchains: mdk
+      attribute: extra-libraries
+  component_info:
+    common:
+      description: MMCAU library for ARM Cortex M0+ core
+      version: 2.0.4
+      type: middleware
+      change_log: "./ChangeLogKSDK.txt"
+      component_bundle: bundles.mmcau
+      user_visible: true
+      manifest_name: mmcau_cm0p
+      full_name: Kinetis MMCAU security function library for Arm Cortex-M0+
+middleware.mmcau.cm4_cm7_core.support:
+  section-type: component_support
+  __requires__:
+  - core.cm4
+  - core.cm4f
+  - core.cm7f
+middleware.mmcau.cm0p.support:
+  section-type: component_support
+  __requires__:
+  - core.cm0p
+middleware.mmcau.common_files:
+  section-type: component
+  contents:
+    repo_base_path: middleware/mmcau
+    project_base_path: mmcau
+    cc-include:
+    - repo_relative_path: "./"
+    files:
+    - source: cau_api.h
+    - source: fsl_mmcau.h
+    - source: fsl_mmcau.c
+  __requires__:
+  - middleware.mmcau.ui_control driver.common
+  component_info:
+    common:
+      version: 2.0.3
+      manifest_name: mmcau
+      full_name: Kinetis MMCAU common source files
+      description: MMCAU common library source files
+      component_bundle: bundles.mmcau
+      type: middleware
+middleware.mmcau.mmcau_files:
+  section-type: component
+  contents:
+    repo_base_path: middleware/mmcau
+    project_base_path: mmcau
+    files:
+    - source: "*.txt"
+    - source: asm-cm0p/src/*.hdr
+      cores: cm0p
+    - source: asm-cm0p/src/*.s
+      cores: cm0p
+    - source: asm-cm4-cm7/src/*.hdr
+      cores: cm4 cm4f cm7f
+    - source: asm-cm4-cm7/src/*.s
+      cores: cm4 cm4f cm7f
+  __requires__:
+  - middleware.mmcau.ui_control
+  component_info:
+    common:
+      version: 2.0.2
+      manifest_name: mmcau
+      full_name: Kinetis MMCAU security function library source files
+      description: MMCAU security function library source files
+      user_visible: false
+      component_bundle: bundles.mmcau
+      type: middleware
+middleware.mmcau.unused_files:
+  section-type: component
+  contents:
+    repo_base_path: middleware/mmcau
+    project_base_path: mmcau
+    files:
+    - source: doxygen/*.*
+      hidden: true
+      exclude: true
+  component_info:
+    common:
+      description: MMCAU files unused by projects
+      version: 2.0.2
+      type: other
+      change_log: "./ChangeLogKSDK.txt"
+      user_visible: false
+      manifest_name: unused_files
+      full_name: MMCAU library unused files
+  __requires__:
+  - middleware.mmcau.ui_control
+middleware.mmcau.ui_control:
+  section-type: component_support
+  component_info:
+    common:
+      fixed_id: nxp_mmcau
+      ui_name: MMCAU
+      ui_description: MMCAU
+      ui_category: Middleware
+      ui_control: true
+      ui_release_specific: true
+      user_visible: false
+      manifest_name: mmcau
+      ui_control_default: true
+      version: 2.0.1
+      component_set_path:
+        repo_base_path: middleware/mmcau
+  __requires__:
+  - D_IP_MMCAU_APB3_SYN_001
+  - device.MK11DA5
+  - device.MK21DA5
+  - device.MK21FA12
+  - device.MK24F12
+  - device.MK26F18
+  - device.MK52D10
+  - device.MK53D10
+  - device.MK60D10
+  - device.MK63F12
+  - device.MK64F12
+  - device.MK65F18
+  - device.MK66F18
+  - device.MK70F12
+  - device.MK70F15
+  - device.MK80F25615
+  - device.MK81F25615
+  - device.MK82F25615
+  - device.MKL28Z7
+  - device.K32L2A41A
+  - device.MKM34Z7
+  - device.MKM35Z7
+  - device.MKV56F24
+  - device.MKV58F24
+  - device.MKW21D5
+  - device.MKW22D5
+  - device.MKW24D5
+  - device.MCIMX7U5
+  - device.MIMX8QM6
+  - device.MIMX8QX6
+  - device.MIMX8DL1
+  - device.MIMXRT1165
+  - device.MIMXRT1166
+  - device.MIMXRT1173
+  - device.MIMXRT1175
+  - device.MIMXRT1176
+bundles.mmcau:
+  section-type: component_support
+  bundle: true
+  contents: {}
+  component_info:
+    common:
+      full_name: MMCAU library
+      class: Security
+      version: 2.0.2
+      description: MMCAU library
+      cmsis_bundle: mmCAU
+  __requires__:
+  - middleware.mmcau.ui_control
