@@ -17,7 +17,7 @@ middleware.mmcau.cm4_cm7:
   belong_to: set.middleware.mmcau
   section_info:
     description: MMCAU library for ARM Cortex M4/M7 core
-    version: 2.0.3
+    version: 2.0.4
     type: middleware
     user_visible: always
     full_name: Kinetis MMCAU security function library for Arm Cortex-M4 and Cortex-M7
@@ -79,7 +79,7 @@ middleware.mmcau.common_files:
     - source: fsl_mmcau.c
   belong_to: set.middleware.mmcau
   section_info:
-    version: 2.0.3
+    version: 2.0.4
     full_name: Kinetis MMCAU common source files
     description: MMCAU common library source files
     type: middleware
@@ -107,7 +107,7 @@ middleware.mmcau.mmcau_files:
       cores: cm4 cm4f cm7f
   belong_to: set.middleware.mmcau
   section_info:
-    version: 2.0.2
+    version: 2.0.4
     full_name: Kinetis MMCAU security function library source files
     description: MMCAU security function library source files
     user_visible: never
@@ -117,7 +117,7 @@ middleware.mmcau.mmcau_files:
       belong_to: mmcau
     display_name: mmcau
 middleware.mmcau.unused_files:
-  section-type: component
+  section-type: container
   contents:
     repo_base_path: middleware/mmcau
     project_base_path: mmcau
@@ -128,17 +128,17 @@ middleware.mmcau.unused_files:
   belong_to: set.middleware.mmcau
   section_info:
     description: MMCAU files unused by projects
-    version: 2.0.2
+    version: 2.0.4
     type: other
     user_visible: never
     full_name: MMCAU library unused files
-    display_name: unused_files
+    display_name: MMCAU_unused_files
 set.middleware.mmcau:
   section-type: set
   belong_to: set.middleware.mmcau
   section_info:
     fixed_id: nxp_mmcau
-    version: 2.0.1
+    version: 2.0.4
     display_name: MMCAU
     description: MMCAU
     set_location:
@@ -160,7 +160,7 @@ set.middleware.mmcau:
         cclass: Security
         cgroup: MMCAU library
         cbundle: mmCAU
-        cbundle_version: 2.0.2
+        cbundle_version: 2.0.4
   dependency:
     anyOf:
     - ip:
@@ -235,3 +235,28 @@ set.middleware.mmcau:
       - MIMXRT1175
     - device:
       - MIMXRT1176
+license.mmcau_license:
+  section-type: license
+  belong_to: set.middleware.mmcau
+  contents:
+    repo_base_path: middleware/mmcau
+    files:
+    - source: LICENSE
+  section_info:
+    Outgoing License: BSD-3-Clause
+scr.middleware.mmcau:
+  belong_to: set.middleware.mmcau
+  section-type: scr
+  contents:
+    license:
+    - license.mmcau_license
+    Name: mmCAU S/W Library
+    Version: 2.0.4
+    Format: source code
+    Description: S/W library that works with the memory-mapped cryptographic acceleration
+          unit present on some MCUXpresso SoCs
+    Location: middleware/mmcau
+    Origin: NXP (BSD-3-Clause)
+  dependency:
+    allOf:
+    - middleware.multicore.mmcau
