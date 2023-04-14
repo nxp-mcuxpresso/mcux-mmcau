@@ -154,7 +154,10 @@ set.middleware.mmcau:
           ui_category: Middleware
       cmsis_pack:
         vendor: NXP
-        supported: false
+        # supported: false
+        pack_root:
+          pack_type: SWP
+          pack_name: NXP_MMCAU
     component_taxonomy:
       mmcau:
         cclass: Security
@@ -167,73 +170,39 @@ set.middleware.mmcau:
       - D_IP_MMCAU_APB3_SYN_001
     - device:
       - MK11DA5
-    - device:
       - MK21DA5
-    - device:
       - MK21FA12
-    - device:
       - MK24F12
-    - device:
       - MK26F18
-    - device:
       - MK52D10
-    - device:
       - MK53D10
-    - device:
       - MK60D10
-    - device:
       - MK63F12
-    - device:
       - MK64F12
-    - device:
       - MK65F18
-    - device:
       - MK66F18
-    - device:
       - MK70F12
-    - device:
       - MK70F15
-    - device:
       - MK80F25615
-    - device:
       - MK81F25615
-    - device:
       - MK82F25615
-    - device:
       - MKL28Z7
-    - device:
       - K32L2A41A
-    - device:
       - MKM34Z7
-    - device:
       - MKM35Z7
-    - device:
       - MKV56F24
-    - device:
       - MKV58F24
-    - device:
       - MKW21D5
-    - device:
       - MKW22D5
-    - device:
       - MKW24D5
-    - device:
       - MCIMX7U5
-    - device:
       - MIMX8QM6
-    - device:
       - MIMX8QX6
-    - device:
       - MIMX8DL1
-    - device:
       - MIMXRT1165
-    - device:
       - MIMXRT1166
-    - device:
       - MIMXRT1173
-    - device:
       - MIMXRT1175
-    - device:
       - MIMXRT1176
 license.mmcau_license:
   section-type: license
