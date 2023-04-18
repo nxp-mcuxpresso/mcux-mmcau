@@ -72,6 +72,9 @@ mmcau:
       - boards/${board}/mmcau_examples/mmcau_api/board.readme
       - middleware/mmcau/example/mmcau_api/mmcau_api.readme
       category: mmcau_examples
+      product:
+        cmsis_pack:
+          supported: false
       brief: Memory-Mapped Cryptographic Acceleration Unit (MMCAU)This project is
         a demonstration program that uses the KSDK software for encryption/decryption
         sampledata using AES-CBC, DES3-CBC and Hash algorithms MD5, SHA1 and SHA256.
