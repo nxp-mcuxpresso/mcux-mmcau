@@ -157,7 +157,7 @@ set.middleware.mmcau:
         # supported: false
         pack_root:
           pack_type: SWP
-          pack_name: NXP_MMCAU
+          pack_name: MMCAU
     component_taxonomy:
       mmcau:
         cclass: Security
