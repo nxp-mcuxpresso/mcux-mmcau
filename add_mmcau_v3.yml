@@ -152,12 +152,16 @@ set.middleware.mmcau:
           ui_release_specific: true
           ui_control_default: true
           ui_category: Middleware
+        scr:
+        - scr.middleware.mmcau
       cmsis_pack:
         vendor: NXP
         # supported: false
         pack_root:
           pack_type: SWP
           pack_name: MMCAU
+        scr:
+        - scr.middleware.mmcau
     component_taxonomy:
       mmcau:
         cclass: Security
@@ -226,6 +230,3 @@ scr.middleware.mmcau:
           unit present on some MCUXpresso SoCs
     Location: middleware/mmcau
     Origin: NXP (BSD-3-Clause)
-  dependency:
-    allOf:
-    - middleware.multicore.mmcau
