@@ -164,7 +164,7 @@ set.middleware.mmcau:
         - scr.middleware.mmcau
     component_taxonomy:
       mmcau:
-        cclass: Security
+        cclass: MMCAU Security
         cgroup: MMCAU library
         cbundle: mmCAU
         cbundle_version: 2.0.4
