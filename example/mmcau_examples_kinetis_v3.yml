@@ -87,6 +87,12 @@ mmcau:
               cc-define:
                 PRINTF_FLOAT_ENABLE: 1
                 PRINTF_ADVANCED_ENABLE: 1
+        mdk:
+          config:
+            __common__:
+              cc-flags:
+              - -Wno-implicit
+              - "-Os"
     modules:
       example:
         required: true
