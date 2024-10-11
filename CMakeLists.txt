@@ -1,3 +1,5 @@
+# Copyright 2024 NXP
+# SPDX-License-Identifier: BSD-3-Clause
 
 if(CONFIG_MCUX_COMPONENT_middleware.mmcau.cm4_cm7)
     mcux_component_version(2.0.4)
