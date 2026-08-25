@@ -1,16 +1,40 @@
-This is an updated release of the Kinetis MMCAU security function library.
+# MCUXpresso SDK : mcux-mmcau
 
+## Overview
+This repository is for MCUXpresso SDK mmCAU middleware delivery and it contains the components officially provided in NXP MCUXpresso SDK. This repository is part of the MCUXpresso SDK overall delivery which is composed of several sub-repositories/projects. Navigate to the top/parent repository [mcuxsdk](https://github.com/nxp-mcuxpresso/mcuxsdk-manifests/) for the complete delivery of MCUXpresso SDK to be able to build and run the mmCAU examples that are based on this delivery.
+
+## Documentation
+Overall details can be reviewed here: [MCUXpresso SDK Online Documentation](https://mcuxpresso.nxp.com/mcuxsdk/latest/html/introduction/README.html)
+
+The mmCAU API reference is generated from the Doxygen sources in this repository (see the `doxygen/` directory) and is published as part of the MCUXpresso SDK API documentation.
+
+## Setup
+Instructions on how to install the MCUXpresso SDK provided from GitHub via west manifest [Getting Started with SDK - Detailed Installation Instructions](https://mcuxpresso.nxp.com/mcuxsdk/latest/html/gsd/installation.html#installation)
+
+## Contribution
+Contributions are not currently accepted. Guidelines to contribute will be posted in the future.
+
+---------------------------------
+## Repo Specific Content
+The mmCAU (Memory-Mapped Cryptographic Acceleration Unit) software library uses the mmCAU co-processor connected to the Arm Cortex-M Private Peripheral Bus (PPB) to accelerate common cryptographic and hashing operations. The library exposes ANSI C prototypes through `cau_api.h`, and a thin wrapper layer (`fsl_mmcau.h` / `fsl_mmcau.c`) is provided for applications that cannot guarantee 0-modulo-4 aligned buffers.
+
+Two prebuilt assembly libraries are provided:
+
+- `asm-cm0p` - optimized for the Armv6-M ISA (Cortex-M0+)
+- `asm-cm4-cm7` - optimized for the Armv7-M ISA (Cortex-M4/M7)
+
+### MMCAU Security Function Library
+This is an updated release of the Kinetis MMCAU security function library.
 
 This release:
 
-  - new asm-cm0p library created, optimized for ARMv6-M ISA
-  - minor improvements to asm-cm4 library, optimized for ARMv7-M ISA
+- new asm-cm0p library created, optimized for ARMv6-M ISA
+- minor improvements to asm-cm4 library, optimized for ARMv7-M ISA
 
-
+### Directory Structure
 This release contains the following structure for the mmcau directory:
 
-README.txt (this file)
-
+```
 asm-cm0p
 |-- cau_api.h
 |-- lib_mmcau-cm0p.a
@@ -44,28 +68,23 @@ asm-cm4
     |-- mmcau_md5_functions.s
     |-- mmcau_sha1_functions.s
     `-- mmcau_sha256_functions.s
+```
 
+Each mmcau optimized assembly library (cm0p, cm4) is contained in 5 files (18 functions) and is archived in a `lib_mmcau*.a` file.
 
-
-Each mmcau optimized assembly library (cm0p, cm4) is contained in 5
-files (18 functions) and is archived in a lib_mmcau*.a file.
-
-
-Each library was assembled with:
-GNU assembler version 4.3.3 (arm-none-linux-gnueabi-as)
-
+Each library was assembled with: GNU assembler version 4.3.3 (arm-none-linux-gnueabi-as)
 
 This mmcau library update is checked-in under Design Sync:
-sync://sync-15010:15010/Projects/mcp_armp/mmcau_apb3/tool_data/lib/
-tagged as: mmcau_apb3.01.00.00.11
+`sync://sync-15010:15010/Projects/mcp_armp/mmcau_apb3/tool_data/lib/`
+tagged as: `mmcau_apb3.01.00.00.11`
 
+### Library Contents
 
+#### asm-cm0p : mmcau assembly library optimized for the ARMv6-M ISA
 
-asm-cm0p : mmcau assembly library optimized for the ARMv6-M ISA
-********
+Includes the following file versions (with checkin timestamps):
 
-Includes the following file versions (with checkin timestamps): 
-
+```
 12/19/2013 10:01    1.1     cau_api.h
 11/13/2013 11:30    1.1     lib_mmcau-cm0p.a
                             (checked in as lib_mmcau-v6m.a)
@@ -75,22 +94,23 @@ Includes the following file versions (with checkin timestamps):
 10/31/2013 12:21    1.1     mmcau_md5_functions.s
 10/31/2013 12:21    1.1     mmcau_sha1_functions.s
 11/20/2013 09:27    1.2     mmcau_sha256_functions.s
+```
 
-The following additional asm listing files not under revision control are
-also included (with last modified timestamps):
+The following additional asm listing files not under revision control are also included (with last modified timestamps):
 
+```
 11/19/2013 11:36            mmcau_aes_functions.lst
 11/19/2013 11:36            mmcau_des_functions.lst
 11/19/2013 11:36            mmcau_md5_functions.lst
 11/19/2013 11:36            mmcau_sha1_functions.lst
 11/19/2013 11:36            mmcau_sha256_functions.lst
+```
 
+#### asm-cm4 : mmcau assembly library optimized for the ARMv7-M ISA
 
-asm-cm4 : mmcau assembly library optimized for the ARMv7-M ISA
-*******
+Includes the following file versions (with checkin timestamps):
 
-Includes the following file versions (with checkin timestamps): 
-
+```
 12/19/2013 10:01    1.1     cau_api.h
 11/21/2013 13:41    1.6     lib_mmcau.a
 08/22/2010 22:52    1.1     cau2_defines.hdr
@@ -99,21 +119,22 @@ Includes the following file versions (with checkin timestamps):
 11/21/2013 13:17    1.6     mmcau_md5_functions.s
 11/21/2013 13:17    1.5     mmcau_sha1_functions.s
 11/21/2013 13:18    1.6     mmcau_sha256_functions.s
+```
 
-The following additional asm listing files not under revision control are
-also included (with last modified timestamps):
+The following additional asm listing files not under revision control are also included (with last modified timestamps):
 
+```
 11/21/2013 13:23            mmcau_aes_functions.lst
 11/21/2013 13:23            mmcau_des_functions.lst
 11/21/2013 13:23            mmcau_md5_functions.lst
 11/21/2013 13:23            mmcau_sha1_functions.lst
 11/21/2013 13:23            mmcau_sha256_functions.lst
+```
 
-
-
+### Calling Conventions
 The calling conventions for the mmcau functions are as follows:
----------------------------------------------------------------
 
+```c
 mmcau_aes_functions:
     void    mmcau_aes_set_key (const unsigned char *key,
                                const int key_size,
@@ -172,3 +193,7 @@ mmcau_sha256_functions:
                                  unsigned int *output)
     void    mmcau_sha256_hash   (const unsigned char *input,
                                  unsigned int *output)
+```
+
+## License
+This repository is under the **BSD-3-Clause** license. See the `LICENSE` file for details.
